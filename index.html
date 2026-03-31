@@ -1,145 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generative AI: Using It Right</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenAI: Using It Right | Federal Leadership Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --secondary-blue: #00509d;
+            --accent-gold: #c5a059;
+            --bg-light: #f8f9fa;
+            --text-dark: #212529;
+            --white: #ffffff;
+            --border-color: #dee2e6;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin: 0;
+            background-color: var(--white);
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-tag {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 10px 0;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Grid Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section { margin-bottom: 80px; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .section-title .divider {
+            width: 60px;
+            height: 4px;
+            background: var(--accent-gold);
+            margin: 0 auto;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border-bottom: 4px solid var(--secondary-blue);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-blue);
+            display: block;
+        }
+
+        .stat-desc { font-size: 0.9rem; color: #666; }
+
+        /* Comparison Table */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .comp-box {
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .vague { background-color: #ffeef0; border: 1px solid #f5c2c7; }
+        .rich { background-color: #e7f3ff; border: 1px solid #b6d4fe; }
+
+        /* The 5 C's Graphic */
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .c-card {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .c-card:hover { transform: translateY(-5px); background: var(--secondary-blue); }
+
+        .c-card h3 { margin: 0; color: var(--accent-gold); }
+
+        /* Tools Section */
+        .tool-card {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            margin-right: 20px;
+            background: #eee;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* Code/Prompt blocks */
+        .prompt-block {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 25px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .prompt-label {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 2px 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Timeline */
+        .timeline {
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 30px;
+            margin-left: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -39px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            border: 3px solid var(--accent-gold);
+        }
+
+        footer {
+            background: #f1f3f5;
+            padding: 60px 20px;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .citations a { color: var(--secondary-blue); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .comparison-container { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-  <!-- Hero -->
-  <section class="bg-blue-900 text-white p-10 text-center">
-    <h1 class="text-4xl font-bold mb-4">Generative AI: Using It Right</h1>
-    <p class="text-lg max-w-2xl mx-auto">A practical, research-backed guide for leaders to use AI effectively, responsibly, and strategically.</p>
-  </section>
+<header>
+    <div class="hero-tag">2025 Executive Guide</div>
+    <h1>GenAI: Using It Right</h1>
+    <p class="subtitle">A practical framework for Federal SES and GS-15 Leaders to transition from experimentation to operational excellence.</p>
+</header>
 
-  <!-- What is GenAI -->
-  <section class="p-10 max-w-5xl mx-auto">
-    <h2 class="text-2xl font-bold mb-4">What is Generative AI?</h2>
-    <p class="mb-4">Generative AI creates content such as text, analysis, and summaries from natural language instructions. It is not a search engine or a human expert—it is a powerful assistant that amplifies your capabilities.</p>
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="bg-white p-4 rounded-xl shadow">Reasoning & synthesis engine</div>
-      <div class="bg-white p-4 rounded-xl shadow">24/7 analytical partner</div>
-      <div class="bg-white p-4 rounded-xl shadow">Force multiplier for productivity</div>
+<div class="container">
+    
+    <section id="multiplier">
+        <div class="section-title">
+            <h2>The Strategic Multiplier</h2>
+            <div class="divider"></div>
+            <p>Generative AI is not a search engine—it is a force multiplier for high-level reasoning.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">40%</span>
+                <p class="stat-desc">Faster first drafts for knowledge workers</p>
+                <small>(McKinsey Research, 2024)</small>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">2 Hrs</span>
+                <p class="stat-desc">Reclaimed daily by AI-proficient executives</p>
+                <small>(Stanford AI Lab Study)</small>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">9X</span>
+                <p class="stat-desc">Increase in Federal AI use cases since 2023</p>
+                <small>(GAO Report, 2025)</small>
+            </div>
+        </div>
+    </section>
+
+    <section id="prompting">
+        <div class="section-title">
+            <h2>The Art of Prompting</h2>
+            <div class="divider"></div>
+            <p>Context determines results. Moving from "Vague" to "Rich" context is the key leadership skill.</p>
+        </div>
+
+        <div class="comparison-container">
+            <div class="comp-box vague">
+                <strong>❌ The Vague Prompt</strong>
+                <p>"Write me a briefing on the new policy."</p>
+                <small>Result: Generic output, no mission relevance, requires heavy editing.</small>
+            </div>
+            <div class="comp-box rich">
+                <strong>✅ The Rich Context Prompt</strong>
+                <p>"You are a policy analyst at [Agency]. Write a 1-page executive briefing for the Deputy Secretary on [Policy], focusing on workforce impact. Use formal tone and bullet points."</p>
+            </div>
+        </div>
+
+        <h3 style="margin-top:50px; text-align:center;">The 5 C's Framework</h3>
+        <div class="framework-grid">
+            <div class="c-card"><h3>Character</h3><p>Assign a specific role or persona.</p></div>
+            <div class="c-card"><h3>Challenge</h3><p>Define the specific task or problem.</p></div>
+            <div class="c-card"><h3>Context</h3><p>Provide background and audience info.</p></div>
+            <div class="c-card"><h3>Constraints</h3><p>Set word counts, tone, and limits.</p></div>
+            <div class="c-card"><h3>Craft</h3><p>Define the output format (Memo, Table, etc.)</p></div>
+        </div>
+    </section>
+
+    <section id="cheatsheet">
+        <div class="section-title">
+            <h2>Leader's Prompt Cheat Sheet</h2>
+            <div class="divider"></div>
+            <p>Copy and adapt these templates for immediate impact.</p>
+        </div>
+
+        <div class="prompt-block">
+            <div class="prompt-label">EXECUTIVE SUMMARY</div>
+            "You are a senior policy analyst. Summarize the attached document in under 300 words for a Cabinet-level audience. Lead with the 3 most important findings. Include a risk/opportunity table."
+        </div>
+
+        <div class="prompt-block">
+            <div class="prompt-label">DECISION BRIEF</div>
+            "Act as a strategic advisor. I need to decide [DECISION]. Present 3 options with pros, cons, and a recommendation. Assume I care about mission impact, cost, and political feasibility."
+        </div>
+
+        <div class="prompt-block">
+            <div class="prompt-label">MEETING PREP</div>
+            "I have a meeting with [AUDIENCE] about [TOPIC]. Generate 5 questions I should ask, 3 key points I must make, and 2 anticipated objections with suggested responses."
+        </div>
+    </section>
+
+    <section id="action">
+        <div class="section-title">
+            <h2>30-Day Action Plan</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Days 1–10: The Pilot Phase</h3>
+                <p>Identify 2–3 routine tasks (emails, summaries, or research). Use an approved tool like Microsoft Copilot or Claude to generate first drafts.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Days 11–20: Mastery & Collaboration</h3>
+                <p>Begin using the <strong>RACI</strong> (Role, Ask, Context, Instructions) model for complex tasks. Start a "Prompt Library" for your team to share what works.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Days 21–30: Scale & Review</h3>
+                <p>Present findings to your leadership team. Review your agency's latest AI security guidance to ensure long-term compliance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="guardrails" style="background: var(--bg-light); padding: 40px; border-radius: 8px;">
+        <h2 style="color: #c0392b;">⚠️ Essential Guardrails</h2>
+        <ul>
+            <li><strong>Verify Everything:</strong> AI can "hallucinate." Always fact-check citations and data.</li>
+            <li><strong>Protect Data:</strong> Never input PII (Personally Identifiable Information) or classified data into non-secured tools.</li>
+            <li><strong>Human Accountability:</strong> AI advises, but the Senior Executive owns the decision. You are the "Human in the Loop."</li>
+        </ul>
+    </section>
+
+</div>
+
+<footer>
+    <div class="container">
+        <h3>References & Research</h3>
+        <div class="citations">
+            <p>1. <strong>McKinsey & Company (2024):</strong> <a href="#">The Economic Potential of Generative AI: The Next Productivity Frontier.</a></p>
+            <p>2. <strong>Stanford Institute for Human-Centered AI (2024):</strong> <a href="#">AI Index Report: Impact on Professional Productivity.</a></p>
+            <p>3. <strong>U.S. GAO (2025):</strong> <a href="#">Artificial Intelligence: Agency Use and Management Oversight.</a></p>
+            <p>4. <strong>Federal SES White Paper (2025):</strong> <em>Generative AI: Using It Right — A Guide for Leaders.</em></p>
+        </div>
+        <hr style="opacity: 0.1; margin: 40px 0;">
+        <p style="text-align: center;">&copy; 2025 Federal Leadership Training. For Official Use Only.</p>
     </div>
-  </section>
-
-  <!-- Context Section -->
-  <section class="bg-gray-100 p-10">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl font-bold mb-4">Context is Everything</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-red-100 p-4 rounded-xl">
-          <h3 class="font-bold">❌ Vague Prompt</h3>
-          <p>"Write me a briefing."</p>
-          <p class="text-sm mt-2">Result: Generic and not useful.</p>
-        </div>
-        <div class="bg-green-100 p-4 rounded-xl">
-          <h3 class="font-bold">✅ Rich Prompt</h3>
-          <p>"You are a policy analyst. Write a 1-page briefing for leadership with bullet points."</p>
-          <p class="text-sm mt-2">Result: Actionable and relevant.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5Cs -->
-  <section class="p-10 max-w-5xl mx-auto">
-    <h2 class="text-2xl font-bold mb-6">The 5 C's Framework</h2>
-    <div class="grid md:grid-cols-5 gap-4 text-center">
-      <div class="bg-white p-4 rounded-xl shadow">Character</div>
-      <div class="bg-white p-4 rounded-xl shadow">Challenge</div>
-      <div class="bg-white p-4 rounded-xl shadow">Context</div>
-      <div class="bg-white p-4 rounded-xl shadow">Constraints</div>
-      <div class="bg-white p-4 rounded-xl shadow">Craft</div>
-    </div>
-  </section>
-
-  <!-- Prompting -->
-  <section class="bg-gray-100 p-10">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl font-bold mb-4">Prompting Frameworks</h2>
-      <ul class="list-disc pl-6 space-y-2">
-        <li><strong>RACI:</strong> Role, Ask, Context, Instructions</li>
-        <li><strong>Step-Back:</strong> Reframe → Analyze → Advise</li>
-        <li><strong>Chain-of-Thought:</strong> Step-by-step reasoning</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Use Cases -->
-  <section class="p-10 max-w-5xl mx-auto">
-    <h2 class="text-2xl font-bold mb-4">Where AI Delivers Value</h2>
-    <div class="grid md:grid-cols-2 gap-4">
-      <div class="bg-white p-4 rounded-xl shadow">Communications: briefs, emails, summaries</div>
-      <div class="bg-white p-4 rounded-xl shadow">Policy: analysis, comparisons, gaps</div>
-      <div class="bg-white p-4 rounded-xl shadow">Operations: SOPs, workflows</div>
-      <div class="bg-white p-4 rounded-xl shadow">Workforce: training, surveys</div>
-    </div>
-  </section>
-
-  <!-- Research Section -->
-  <section class="bg-blue-50 p-10">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl font-bold mb-4">What Research Shows</h2>
-      <div class="grid md:grid-cols-4 gap-4 text-center">
-        <div class="bg-white p-4 rounded-xl shadow">
-          <h3 class="text-xl font-bold">40%</h3>
-          <p>Faster first drafts (McKinsey, 2024)</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl shadow">
-          <h3 class="text-xl font-bold">3×</h3>
-          <p>More documents processed</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl shadow">
-          <h3 class="text-xl font-bold">2 hrs</h3>
-          <p>Saved per day (Stanford, 2024)</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl shadow">
-          <h3 class="text-xl font-bold">70%</h3>
-          <p>Less time summarizing</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Risks -->
-  <section class="p-10 max-w-5xl mx-auto">
-    <h2 class="text-2xl font-bold mb-4">Risks & Guardrails</h2>
-    <ul class="list-disc pl-6 space-y-2">
-      <li>Hallucinations → Verify facts</li>
-      <li>Data security → Avoid sensitive data</li>
-      <li>Over-reliance → Maintain judgment</li>
-      <li>Bias → Review outputs critically</li>
-    </ul>
-  </section>
-
-  <!-- Action Plan -->
-  <section class="bg-gray-100 p-10">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl font-bold mb-4">30-Day Action Plan</h2>
-      <div class="grid md:grid-cols-3 gap-4">
-        <div class="bg-white p-4 rounded-xl shadow">
-          <h3 class="font-bold">Week 1</h3>
-          <p>Explore tools and try prompts</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl shadow">
-          <h3 class="font-bold">Week 2</h3>
-          <p>Practice daily and refine prompts</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl shadow">
-          <h3 class="font-bold">Weeks 3–4</h3>
-          <p>Scale across your team</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-blue-900 text-white text-center p-6">
-    <p>Based on Federal SES GenAI Guidance | 2025</p>
-  </footer>
+</footer>
 
 </body>
 </html>
